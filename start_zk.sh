@@ -52,4 +52,9 @@ for i in "${!ZK[@]}"; do
   echo -e "server.$i=${ZK[$i]}:2888:3888" >> "/opt/zookeeper-$ZK_VERSION/conf/zoo.cfg"
 done
 
-bash "/opt/zookeeper-$ZK_VERSION/bin/zkServer.sh" "start-foreground"
+cat << EOF >> /etc/supervisor/conf.d/supervisord.conf
+[program:zookeeper]
+command=/opt/zookeeper-$ZK_VERSION/bin/zkServer.sh start-foreground
+EOF
+
+/usr/bin/supervisord
