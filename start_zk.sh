@@ -49,7 +49,7 @@ echo -e "$ZK_ID" > /opt/zookeeper/data/myid
 
 IFS=',' read -ra ZK <<< "$CLUSTER"
 for i in "${!ZK[@]}"; do
-  echo -e "server.$i=${ZK[$i]}:2888:3888" >> "/opt/zookeeper-$ZK_VERSION/conf/zoo.cfg"
+  echo -e "server.$((i+1))=${ZK[$i]}:2888:3888" >> "/opt/zookeeper-$ZK_VERSION/conf/zoo.cfg"
 done
 
 cat << EOF >> /etc/supervisor/conf.d/supervisord.conf
