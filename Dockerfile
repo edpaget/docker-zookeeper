@@ -7,8 +7,8 @@ MAINTAINER Edward paget <ed@zooniverse.org>
 RUN apt-get update 
 RUN apt-get install -y -q openjdk-7-jre-headless wget supervisor
 
-RUN wget -q -O /opt/zookeeper-3.4.6.tar.gz http://mirrors.ibiblio.org/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz
-RUN tar -xvf /opt/zookeeper-3.4.6.tar.gz -C /opt
+ADD http://mirrors.advancedhosters.com/apache/zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz  /opt/
+RUN tar xf /opt/zookeeper-3.4.6.tar.gz -C /opt
 RUN rm /opt/zookeeper-3.4.6.tar.gz
 
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
